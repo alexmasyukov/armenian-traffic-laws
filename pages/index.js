@@ -12,6 +12,7 @@ export default function Home() {
 
       <Link href='/questions-on-the-topics'>Вопросы по темам</Link>
       <Link href='/rules'>Правила дорожного движения</Link>
+      <Link href='/my-mdx-page'>MDX</Link>
 
       <style jsx>{`
         main {

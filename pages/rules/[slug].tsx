@@ -12,6 +12,7 @@ import Head from 'next/head';
 // import { CMS_NAME } from '../../lib/constants';
 import markdownToHtml from '../../lib/markdownToHtml';
 import type RuleType from '../../interfaces/rule';
+import Link from 'next/link';
 
 type Props = {
   rule: RuleType;
@@ -31,6 +32,7 @@ export default function Rule({ rule, moreRules, preview }: Props) {
     //   <Container>
     //     <Header />
     <>
+      <Link href='/'>Back to home</Link>
       {router.isFallback ? (
         <div>Loading…</div>
       ) : (
