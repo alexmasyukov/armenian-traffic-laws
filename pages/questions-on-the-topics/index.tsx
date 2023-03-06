@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { getGroups } from '../utils';
-import { Group } from '../types';
-import { GroupList } from '../components/GroupList/GroupList';
-import { Questions } from '../components/Questions/Questions';
+import { getGroups } from './../../utils';
+import { Group } from './../../types';
+import { GroupList } from './../../components/GroupList/GroupList';
+import { Questions } from './../../components/Questions/Questions';
 
 const groups = getGroups();
 
