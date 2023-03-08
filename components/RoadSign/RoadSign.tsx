@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
-import { Tooltip } from './styled';
+import { Arrow, Group, Sign, Tooltip } from './styled';
+import { RoadSignGroup, roadSignGroups, roadSigns } from '../../data/roadSigns';
 
 type Props = {
   children: React.ReactNode;
@@ -15,9 +16,20 @@ export default function RoadSign({ children, number }: Props) {
   const [arrowElement, setArrowElement] = useState(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'bottom',
-    modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
+    strategy: 'fixed',
+    modifiers: [
+      { name: 'offset', options: { offset: [0, 14] } },
+      { name: 'arrow', options: { element: arrowElement } },
+    ],
   });
   const [show, setShow] = useState(false);
+  const roadSignNumber = children as string;
+  const roadSign = roadSigns.find((roadSign) => roadSign.number === roadSignNumber);
+  let roadSignGroup: RoadSignGroup = null;
+
+  if (roadSign) {
+    roadSignGroup = roadSignGroups.find((roadSignGroup) => roadSignGroup.id === roadSign.groupId);
+  }
 
   useEffect(() => {
     setIsRenderDOM(true);
@@ -37,7 +49,7 @@ export default function RoadSign({ children, number }: Props) {
         onTouchEnd={() => setShow(false)}
       >
         <img
-          src={`/assets/road-sign/${number}.png`}
+          src={`/assets/road-signs/${number}.png`}
           style={{ height: '34px', width: 'auto', position: 'relative', verticalAlign: 'middle' }}
           alt={`знак пдд ${number}`}
         />
@@ -48,15 +60,28 @@ export default function RoadSign({ children, number }: Props) {
       {show &&
         ReactDOM.createPortal(
           <Tooltip ref={setPopperElement} style={styles.popper} {...attributes.popper}>
-            <img
-              src={`/assets/road-sign/${number}.png`}
-              style={{ height: '80px', width: 'auto', position: 'relative', verticalAlign: 'middle' }}
-              alt={`знак пдд ${number}`}
-            />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non deserunt natus ratione laudantium,
-            accusamus quibusdam asperiores expedita iure. Blanditiis reiciendis temporibus qui fuga doloremque
-            corrupti, eaque accusantium. Maxime, placeat est.
-            {/* <div ref={setArrowElement} style={styles.arrow} /> */}
+            <Sign>
+              <img
+                src={`/assets/road-signs/${roadSignNumber}.png`}
+                style={{ height: '80px', width: 'auto', position: 'relative', verticalAlign: 'middle' }}
+                alt={`знак пдд ${roadSignNumber}`}
+              />
+
+              <div>
+                <b>
+                  {roadSign?.number}. {roadSign?.name}
+                </b>
+
+                <p>{roadSign?.description}</p>
+              </div>
+            </Sign>
+
+            <Group>
+              <b>{roadSignGroup?.name}</b>
+              <p>{roadSignGroup?.description}</p>
+            </Group>
+
+            <Arrow ref={setArrowElement} style={styles.arrow} />
           </Tooltip>,
           document.body
         )}

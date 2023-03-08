@@ -17,7 +17,7 @@ export const light: DefaultTheme = {
   colors: {
     background: '#fff',
     text: '#000',
-    tooltip: '#222831',
+    tooltip: '#444',
     tooltipText: '#fff',
   },
 };
