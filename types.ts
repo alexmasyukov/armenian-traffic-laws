@@ -22,3 +22,12 @@ export type Group = {
 export type Groups = Record<Group['id'], Group>;
 
 export type Favorites = QuestionId[];
+
+export type AppSettings = {
+  lang: 'ru' | 'am';
+  theme: 'light' | 'dark';
+  fontSize: {
+    base: string;
+    rules: string;
+  };
+};

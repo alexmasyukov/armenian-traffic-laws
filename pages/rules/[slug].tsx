@@ -32,7 +32,6 @@ export default function Rule({ rule, moreRules, preview }: Props) {
     //   <Container>
     //     <Header />
     <>
-      <Link href='/'>Back to home</Link>
       {router.isFallback ? (
         <div>Loading…</div>
       ) : (

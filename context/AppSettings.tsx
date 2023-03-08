@@ -1,20 +1,20 @@
 import React, { createContext, useContext } from 'react';
+import { AppSettings } from '../types';
 
-export type UpdateRulesFortSizeFunc = (direction: 'up' | 'down') => void;
+export type UpdateFortSizeFunc = (key: keyof AppSettings['fontSize'], direction: 'up' | 'down') => void;
+export type setThemeFunc = (theme: AppSettings['theme']) => void;
 
 export interface AppSettingsContext {
-  updateRulesFontSize: UpdateRulesFortSizeFunc;
+  updateFontSize: UpdateFortSizeFunc;
+  setTheme: setThemeFunc;
 }
-
-export const Context = createContext({} as AppSettingsContext);
-
-export const useAppSettings = () => useContext<AppSettingsContext>(Context);
-
-// const ini = { updateRulesFontSize: () => {} };
 
 interface AppSettingsContextProps extends AppSettingsContext {
   children: React.ReactNode;
 }
+
+export const Context = createContext({} as AppSettingsContext);
+export const useAppSettings = () => useContext<AppSettingsContext>(Context);
 
 export const AppSettingsProvider = ({ children, ...props }: AppSettingsContextProps) => (
   <Context.Provider value={props}>{children}</Context.Provider>

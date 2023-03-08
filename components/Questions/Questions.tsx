@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { FavoritesStore } from '../../helpers/FavoritesStore';
-import { MetricsStore } from '../../helpers/MetricsStore';
+import { FavoritesStore } from '../../services/FavoritesStore';
+import { MetricsStore } from '../../services/MetricsStore';
 import { AnswerKey, Group, QuestionId, QuestionMetric } from '../../types';
 import { Qestion } from '../Qestion/Question';
 
