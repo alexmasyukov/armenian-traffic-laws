@@ -17,6 +17,8 @@ export const light: DefaultTheme = {
   colors: {
     background: '#fff',
     text: '#000',
+    tooltip: '#222831',
+    tooltipText: '#fff',
   },
 };
 
@@ -26,6 +28,8 @@ export const dark: DefaultTheme = {
   colors: {
     background: '#111',
     text: '#fff',
+    tooltip: '#222831',
+    tooltipText: '#fff',
   },
 };
 
