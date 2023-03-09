@@ -46,6 +46,25 @@ export const Tooltip = styled.div`
   }
 `;
 
+export const Img = styled.img<{ size?: 'small' }>`
+  height: ${({ size }) => (size === 'small' ? '65px' : '80px')};
+  width: auto;
+  position: relative;
+  vertical-align: middle;
+  padding: 3px;
+`;
+
+export const ImgGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const ImgWrapper = styled.div`
+  p {
+    text-align: center;
+  }
+`;
+
 export const Sign = styled.div`
   display: flex;
 

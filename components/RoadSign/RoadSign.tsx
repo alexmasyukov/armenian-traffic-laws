@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
-import { Arrow, Group, Sign, Tooltip } from './styled';
+import { Arrow, Group, Img, ImgGroup, ImgWrapper, Sign, Tooltip } from './styled';
 import { RoadSignGroup, roadSignGroups, roadSigns } from '../../data/roadSigns';
 
 type Props = {
@@ -23,8 +23,8 @@ export default function RoadSign({ children, number }: Props) {
     ],
   });
   const [show, setShow] = useState(false);
-  const roadSignNumber = children as string;
-  const roadSign = roadSigns.find((roadSign) => roadSign.number === roadSignNumber);
+  const signNumber = children as string;
+  const roadSign = roadSigns.find((roadSign) => roadSign.number === signNumber);
   let roadSignGroup: RoadSignGroup = null;
 
   if (roadSign) {
@@ -36,6 +36,24 @@ export default function RoadSign({ children, number }: Props) {
   }, []);
 
   if (!isRenderDOM) return children;
+
+  const imageGroup = roadSign?.signsGroup && (
+    <ImgGroup>
+      {roadSign.signsGroup
+        .filter((signNumberFromGroup) => signNumberFromGroup !== signNumber)
+        .map((signNumber) => (
+          <ImgWrapper>
+            <Img
+              size='small'
+              key={signNumber}
+              src={`/assets/road-signs/${signNumber}.png`}
+              alt={`знак пдд ${signNumber}`}
+            />
+            <p>{signNumber}</p>
+          </ImgWrapper>
+        ))}
+    </ImgGroup>
+  );
 
   return (
     <>
@@ -61,11 +79,7 @@ export default function RoadSign({ children, number }: Props) {
         ReactDOM.createPortal(
           <Tooltip ref={setPopperElement} style={styles.popper} {...attributes.popper}>
             <Sign>
-              <img
-                src={`/assets/road-signs/${roadSignNumber}.png`}
-                style={{ height: '80px', width: 'auto', position: 'relative', verticalAlign: 'middle' }}
-                alt={`знак пдд ${roadSignNumber}`}
-              />
+              <Img src={`/assets/road-signs/${signNumber}.png`} alt={`знак пдд ${signNumber}`} />
 
               <div>
                 <b>
@@ -75,6 +89,8 @@ export default function RoadSign({ children, number }: Props) {
                 <p>{roadSign?.description}</p>
               </div>
             </Sign>
+
+            {imageGroup}
 
             <Group>
               <b>{roadSignGroup?.name}</b>
