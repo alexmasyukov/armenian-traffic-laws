@@ -18,29 +18,32 @@ body {
   padding: 0;
   margin: 0;
 
+
   /* font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
 
 
-h1,
+
+
+/* h1,
 h2,
 p,
 ul {
   margin: 0;
-}
+} */
 
-ul {
+/* ul {
   padding: 0;
   list-style: none;
-}
+} */
 
-a {
+/* a {
   color: inherit;
 }
 
 button {
   padding: 5px;
-}
+} */
 
 `;
