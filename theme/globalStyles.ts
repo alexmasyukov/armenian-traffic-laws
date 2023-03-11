@@ -46,4 +46,14 @@ button {
   padding: 5px;
 } */
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  tr {
+    border-bottom: 1px solid #777;
+
+  }
+}
+
 `;
