@@ -1,11 +1,11 @@
 import React, { useLayoutEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
-import AppSettingsPanel from '../components/AppSettingsPanel/AppSettingsPanel';
-import { AppSettingsProvider, UpdateFortSizeFunc } from '../context/AppSettings';
-import { light, dark, Theme } from '../theme/theme';
-import { AppSettingsStore } from '../services/AppSettingsStore';
-import { AppSettings } from '../types';
-import { GlobalStyles } from '../theme/globalStyles';
+import AppSettingsPanel from '../../components/AppSettingsPanel/AppSettingsPanel';
+import { AppSettingsProvider, UpdateFortSizeFunc } from '../../context/AppSettings';
+import { light, dark, Theme } from '../../theme/theme';
+import { AppSettingsStore } from '../../services/AppSettingsStore';
+import { AppSettings } from '../../types';
+import { GlobalStyles } from '../../theme/globalStyles';
 import Link from 'next/link';
 
 type Props = {
@@ -58,11 +58,13 @@ export default function BaseLayout({ children }: Props) {
     <ThemeProvider theme={styledTheme}>
       <GlobalStyles />
       <AppSettingsProvider {...{ updateFontSize, setTheme }}>
-        <AppSettingsPanel />
-        <br />
-        <Link href='/'>Back to home</Link>
-        <br />
-        {children}
+        <div className='container mx-auto'>
+          <AppSettingsPanel />
+          <br />
+          <Link href='/'>Back to home</Link>
+          <br />
+          {children}
+        </div>
       </AppSettingsProvider>
     </ThemeProvider>
   );

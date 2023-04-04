@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import BaseLayout from '../layouts/BaseLayout';
+import BaseLayout from '../layouts/BaseLayout/BaseLayout';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -13,9 +13,28 @@ export default function Home() {
           <link rel='icon' href='/favicon.ico' />
         </Head>
 
+        <h1 className='text-3xl font-bold underline'>Hello world!</h1>
+
         <Link href='/questions-on-the-topics'>Вопросы по темам</Link>
         <Link href='/rules'>Правила дорожного движения</Link>
-        <Link href='/my-mdx-page'>MDX</Link>
+        <br />
+        <Link href='/pdd-1'>1</Link>
+        <br />
+        <Link href='/pdd-2'>2</Link>
+        <br />
+        <Link href='/pdd-3'>3</Link>
+        <br />
+        <Link href='/pdd-4'>4</Link>
+        <br />
+        <Link href='/pdd-5'>5</Link>
+        <br />
+        <Link href='/pdd-6'>6</Link>
+        <br />
+        <Link href='/pdd-7'>7</Link>
+        <br />
+        <Link href='/pdd-8'>8</Link>
+        <br />
+        <Link href='/pdd-9'>9</Link>
 
         <style jsx>{`
           main {

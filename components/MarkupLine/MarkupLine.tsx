@@ -9,7 +9,7 @@ type Props = {
   number: string;
 };
 
-export default function RoadSign({ children, number }: Props) {
+export default function MarkupLine({ children, number }: Props) {
   const [isRenderDOM, setIsRenderDOM] = useState(false);
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
@@ -23,7 +23,7 @@ export default function RoadSign({ children, number }: Props) {
     ],
   });
   const [show, setShow] = useState(false);
-  const signNumber = number as string;
+  const signNumber = children as string;
   const roadSign = roadSigns.find((roadSign) => roadSign.number === signNumber);
   let roadSignGroup: RoadSignGroup = null;
 
@@ -71,9 +71,8 @@ export default function RoadSign({ children, number }: Props) {
           style={{ height: '34px', width: 'auto', position: 'relative', verticalAlign: 'middle' }}
           alt={`знак пдд ${number}`}
         />
-        {children}
         {' '}
-        {number}
+        {children}
       </a>
 
       {show &&

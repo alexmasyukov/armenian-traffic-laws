@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseLayout from '../BaseLayout';
+import BaseLayout from '../BaseLayout/BaseLayout';
 import { StyledRulesLayout } from './styled';
 
 type Props = {
