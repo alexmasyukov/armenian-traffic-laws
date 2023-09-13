@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   mode: 'production',
   entry: ['./src/main.tsx'],
@@ -7,6 +9,7 @@ module.exports = {
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
+    path: path.resolve(__dirname + '../../../', 'public'),
     clean: true,
   },
   plugins: [...require('./webpack.plugins')],
