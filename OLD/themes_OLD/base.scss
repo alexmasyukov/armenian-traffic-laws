@@ -1,0 +1,318 @@
+@use 'fonts';
+@use 'colors';
+@use 'colors-theme-dark';
+@use 'colors-theme-light';
+@import '@arenadata/core/themes/grid-breakpoints';
+
+:root {
+  --list-padding-left: 16px;
+  --list-margin-left: 36px;
+  --list-marker-margin-right: 16px;
+  --ulist-padding-left: 20px;
+  --list-square-margin-left: -14px;
+  --select-border-radius: 7px;
+  --h1-font-size: 35px;
+  --h1-lh: 35px;
+  --h1-mb: 40px;
+  --h2-font-size: 30px;
+  --h2-lh: 35px;
+  --h2-mb: 40px;
+  --h3-font-size: 25px;
+  --h3-lh: 30px;
+  --h3-mb: 20px;
+  --h4-font-size: 25px;
+  --h4-lh: 30px;
+  --h4-mb: 20px;
+  --h5-font-size: 25px;
+  --h5-crm-font-size: 20px;
+  --h5-lh: 30px;
+  --h5-mb: 20px;
+}
+
+@media (max-width: 639px) {
+  @include media-breakpoint-down(sm) {
+    :root {
+      --h1-font-size: 25px;
+      --h1-lh: 30px;
+      --h2-font-size: 20px;
+      --h2-lh: 23px;
+      --h3-font-size: 16px;
+      --h3-lh: 19px;
+      --h4-font-size: 16px;
+      --h4-lh: 19px;
+      --h5-font-size: 16px;
+      --h5-crm-font-size: 16px;
+      --h5-lh: 19px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    :root {
+      --h1-font-size: 30px;
+      --h1-lh: 36px;
+      --h2-font-size: 25px;
+      --h2-lh: 30px;
+      --h3-font-size: 21px;
+      --h3-lh: 32px;
+      --h4-font-size: 16px;
+      --h4-lh: 19px;
+      --h5-font-size: 16px;
+      --h5-crm-font-size: 16px;
+      --h5-lh: 19px;
+    }
+  }
+}
+
+/** Storybook **/
+
+.sb-show-main {
+  &.theme-dark {
+    background: var(--doc-bg);
+  }
+}
+
+/** /Storybook  **/
+
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+  font-style: normal;
+  // -webkit-font-smoothing: subpixel-antialiased !important;
+  // -webkit-font-smoothing: antialiased;
+  color: var(--text-color-primary);
+  background-color: var(--body-bg);
+}
+
+h1 {
+  font-weight: 600;
+  margin-bottom: var(--h1-mb);
+  color: var(--h1-color, inherit);
+}
+
+input {
+  outline: none;
+  font-family: inherit;
+  background: #0000;
+}
+
+a {
+  text-decoration: none;
+  color: var(--blue-text-color);
+}
+
+b {
+  font-weight: 500;
+}
+
+// заголовки, списки, ссылки, таблица
+.markdown,
+.content {
+  ol,
+  ul {
+    list-style: none;
+    padding-left: var(--ulist-padding-left);
+
+    li {
+      font-style: normal;
+      font-weight: 300;
+      color: var(--text-color-primary);
+      padding: 8px 0;
+
+      &:before {
+        content: '';
+        display: block;
+        float: left;
+        --size: 6px;
+        width: var(--size);
+        height: var(--size);
+        background: var(--ulist-color-square);
+        margin-top: 8px;
+        margin-left: var(--list-square-margin-left);
+        margin-right: 10px;
+      }
+    }
+  }
+
+  // TODO: add this to specific mixin and reuse it this and in the react Table component of storybook
+  table {
+    width: calc(100% + 15px);
+    word-break: break-word;
+    --tableblock-font-size: 16px;
+    --tableblock-lh: 19px;
+    border-collapse: separate;
+    border-spacing: 8px 0;
+    margin-left: -8px;
+
+    & > caption {
+      --tableblock-caption-font-size: 25px;
+      --tableblock-caption-lh: 30px;
+      --tableblock-caption-mb: 30px;
+      font-size: var(--tableblock-caption-font-size);
+      line-height: var(--tableblock-caption-lh);
+      font-weight: 500;
+      text-align: left;
+      margin-bottom: var(--tableblock-caption-mb);
+
+      padding-left: 8px !important;
+    }
+
+    th,
+    td {
+      text-align-last: left;
+      line-height: var(--tableblock-lh);
+      padding: 24px;
+      border: var(--table-td-border);
+      border-top: none;
+
+      &:first-of-type {
+        border-left: none;
+      }
+    }
+
+    th {
+      background: var(--table-header-bg);
+      color: var(--table-header-text-color);
+      font-weight: 500;
+      font-size: var(--tableblock-font-size);
+      border-top-left-radius: var(--table-td-border-radius);
+      border-top-right-radius: var(--table-td-border-radius);
+      border-right: 0;
+      border-left: 0;
+      border-top: 0;
+    }
+
+    td {
+      background-color: var(--table-tr-bg);
+      color: var(--table-td-text-color);
+      font-size: var(--tableblock-font-size);
+
+      border-left: none;
+      border-right: none;
+    }
+
+    tr:last-child {
+      td {
+        border-bottom: none;
+        border-bottom-left-radius: var(--table-td-border-radius);
+        border-bottom-right-radius: var(--table-td-border-radius);
+      }
+    }
+  }
+}
+
+.content,
+.markdown,
+.paragraph {
+  text-align: justify;
+
+  & > p {
+    margin-bottom: 10px;
+  }
+
+  b,
+  strong {
+    font-weight: 500;
+  }
+}
+
+.tooltip {
+  color: var(--table-header-text-color) !important;
+  cursor: pointer;
+}
