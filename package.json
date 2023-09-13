@@ -47,6 +47,8 @@
     "@popperjs/core": "^2.11.8",
     "@types/mdx": "^2.0.5",
     "@types/styled-components": "^5.1.26",
+    "copy-webpack-plugin": "^11.0.0",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-popper": "^2.3.0",
