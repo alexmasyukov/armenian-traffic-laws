@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import BaseLayout from '../layouts/BaseLayout';
+import BaseLayout from '../layouts/BaseLayout/BaseLayout';
 import { roadSignGroups, roadSigns } from '../data/roadSigns';
 
 const roadSignsByGroup = roadSignGroups.map((roadSignGroup) => {

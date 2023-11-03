@@ -4,7 +4,7 @@ import { getGroups } from './../../utils';
 import { Group } from './../../types';
 import { GroupList } from './../../components/GroupList/GroupList';
 import { Questions } from './../../components/Questions/Questions';
-import BaseLayout from '../../layouts/BaseLayout';
+import BaseLayout from '../../layouts/BaseLayout/BaseLayout';
 
 const groups = getGroups();
 
