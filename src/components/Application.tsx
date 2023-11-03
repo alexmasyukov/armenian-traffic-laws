@@ -66,14 +66,16 @@ const Application: React.FC = () => {
    * On component mount
    */
   useEffect(() => {
-    const useDarkTheme = parseInt(localStorage.getItem('dark-mode'));
-    if (isNaN(useDarkTheme)) {
-      setDarkTheme(true);
-    } else if (useDarkTheme == 1) {
-      setDarkTheme(true);
-    } else if (useDarkTheme == 0) {
-      setDarkTheme(false);
-    }
+    // const useDarkTheme = parseInt(localStorage.getItem('dark-mode'));
+    // if (isNaN(useDarkTheme)) {
+    //   setDarkTheme(true);
+    // } else if (useDarkTheme == 1) {
+    //   setDarkTheme(true);
+    // } else if (useDarkTheme == 0) {
+    //   setDarkTheme(false);
+    // }
+
+    localStorage.setItem('dark-mode', '0');
   }, []);
 
   /**
