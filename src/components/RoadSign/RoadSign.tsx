@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
-import { RoadSignGroup, roadSignGroups, roadSigns } from './../../data/roadSigns';
 import { Arrow, Group, Img, ImgGroup, ImgWrapper, Sign, Tooltip } from './styled';
+import { roadSignGroups, roadSigns } from './../../data/roadSigns';
+import { RoadElementGroup } from '../../types';
 
 type Props = {
   children?: React.ReactNode;
@@ -16,7 +17,8 @@ type NameProps = {
 };
 
 const Name = ({ children, name }: NameProps) => (
-  <span style={{ color: '#bdddff' }}>
+  <span>
+    {/* style={{ color: '#bdddff' }} */}
     {children} - &quot;{name}&quot;
   </span>
 );
@@ -36,11 +38,11 @@ export default function RoadSign({ children, n: number, to: toNumber }: Props) {
   });
   const [show, setShow] = useState(false);
   const signNumber = number as string;
-  const roadSign = roadSigns.find((roadSign) => roadSign.number === signNumber);
-  let roadSignGroup: RoadSignGroup = null;
+  const roadSign = roadSigns.find((roadSign) => roadSign.num === signNumber);
+  let roadSignGroup: RoadElementGroup = null;
 
   if (roadSign) {
-    roadSignGroup = roadSignGroups.find((roadSignGroup) => roadSignGroup.id === roadSign.groupId);
+    roadSignGroup = roadSignGroups.find((group) => group.id === roadSign.groupId);
   }
 
   useEffect(() => {
@@ -49,9 +51,9 @@ export default function RoadSign({ children, n: number, to: toNumber }: Props) {
 
   if (!isRenderDOM) return <>{children}</>;
 
-  const imageGroup = roadSign?.signsGroup && (
+  const imageGroup = roadSign?.elmGroup && (
     <ImgGroup>
-      {roadSign.signsGroup
+      {roadSign.elmGroup
         .filter((signNumberFromGroup) => signNumberFromGroup !== signNumber)
         .map((signNumber) => (
           <ImgWrapper key={signNumber}>
@@ -71,7 +73,7 @@ export default function RoadSign({ children, n: number, to: toNumber }: Props) {
     <>
       <a
         href={`#${number}`}
-        style={{ color: '#337ab7', textDecoration: 'none' }}
+        style={{ color: '#1c4b75', textDecoration: 'none' }}
         ref={setReferenceElement}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
@@ -103,10 +105,10 @@ export default function RoadSign({ children, n: number, to: toNumber }: Props) {
 
               <div>
                 <b>
-                  {roadSign?.number}. {roadSign?.name}
+                  {roadSign?.num}. {roadSign?.name}
                 </b>
 
-                <p>{roadSign?.description}</p>
+                <p>{roadSign?.desc}</p>
               </div>
             </Sign>
 
@@ -114,7 +116,7 @@ export default function RoadSign({ children, n: number, to: toNumber }: Props) {
 
             <Group>
               <b>{roadSignGroup?.name}</b>
-              <p>{roadSignGroup?.description}</p>
+              <p>{roadSignGroup?.desc}</p>
             </Group>
 
             <Arrow ref={setArrowElement} style={styles.arrow} />

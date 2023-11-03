@@ -16,10 +16,7 @@ module.exports = [
   {
     // CSS Loader
     test: /\.css$/,
-    use: [
-      { loader: inDev() ? 'style-loader' : MiniCssExtractPlugin.loader },
-      { loader: 'css-loader' },
-    ],
+    use: [{ loader: inDev() ? 'style-loader' : MiniCssExtractPlugin.loader }, { loader: 'css-loader' }],
   },
   {
     // SCSS (SASS) Loader
@@ -42,11 +39,18 @@ module.exports = [
   {
     // Assets loader
     // More information here https://webpack.js.org/guides/asset-modules/
-    test: /\.(gif|jpe?g|tiff|png|webp|bmp|svg|eot|ttf|woff|woff2)$/i,
+    test: /\.(gif|jpe?g|tiff|png|webp|bmp|svg)$/i,
     type: 'asset/resource',
     // generator: {
     //   filename: 'assets/images/[name][ext]',
     // },
+  },
+  {
+    test: /\.(woff(2)?|eot|ttf|otf|)$/,
+    type: 'asset/resource',
+    generator: {
+      filename: `assets/fonts/[hash][ext][query]`,
+    },
   },
 
   //   {

@@ -1,8 +1,8 @@
-import { roadMarkings, roadMarkingsGroups } from '../../data/roadMarkings';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 import { Arrow, Group, Img, ImgGroup, ImgWrapper, Sign, Tooltip } from './styled';
+import { roadMarkings, roadMarkingsGroups } from '../../data/roadMarkings';
 import { RoadElementGroup } from '../../types';
 
 type Props = {
@@ -17,7 +17,8 @@ type NameProps = {
 };
 
 const Name = ({ children, name }: NameProps) => (
-  <span style={{ color: '#bdddff' }}>
+  <span>
+    {/* style={{ color: '#bdddff' }} */}
     {children}
     {name && <> - &quot;{name}&quot;</>}
   </span>
@@ -38,11 +39,13 @@ export default function RoadMarking({ children, n: number, to: toNumber }: Props
   });
   const [show, setShow] = useState(false);
   const signNumber = number as string;
-  const roadSign = roadMarkings.find((roadSign) => roadSign.num === signNumber);
-  let roadSignGroup: RoadElementGroup = null;
+  const roadMarking = roadMarkings.find((roadMarking) => roadMarking.num === signNumber);
+  let roadMarkingGroup: RoadElementGroup = null;
 
-  if (roadSign) {
-    roadSignGroup = roadMarkingsGroups.find((roadSignGroup) => roadSignGroup.id === roadSign.groupId);
+  if (roadMarking) {
+    roadMarkingGroup = roadMarkingsGroups.find(
+      (roadMarkingGroup) => roadMarkingGroup.id === roadMarking.groupId
+    );
   }
 
   useEffect(() => {
@@ -51,9 +54,9 @@ export default function RoadMarking({ children, n: number, to: toNumber }: Props
 
   if (!isRenderDOM) return <>{children}</>;
 
-  const imageGroup = roadSign?.elmGroup && (
+  const imageGroup = roadMarking?.elmGroup && (
     <ImgGroup>
-      {roadSign.elmGroup
+      {roadMarking.elmGroup
         .filter((signNumberFromGroup) => signNumberFromGroup !== signNumber)
         .map((signNumber) => (
           <ImgWrapper key={signNumber}>
@@ -73,7 +76,7 @@ export default function RoadMarking({ children, n: number, to: toNumber }: Props
     <>
       <a
         href={`#${number}`}
-        style={{ color: '#337ab7', textDecoration: 'none' }}
+        style={{ color: '#184770', textDecoration: 'none' }}
         ref={setReferenceElement}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
@@ -90,7 +93,7 @@ export default function RoadMarking({ children, n: number, to: toNumber }: Props
           }}
           alt={`знак пдд ${number}`}
         />{' '}
-        <Name name={roadSign?.name}>
+        <Name name={roadMarking?.name}>
           {number} {toNumber && `  – ${toNumber}`}
         </Name>
       </a>
@@ -103,18 +106,18 @@ export default function RoadMarking({ children, n: number, to: toNumber }: Props
 
               <div>
                 <b>
-                  {roadSign?.num}. {roadSign?.name}
+                  {roadMarking?.num}. {roadMarking?.name}
                 </b>
 
-                <p>{roadSign?.desc}</p>
+                <p>{roadMarking?.desc}</p>
               </div>
             </Sign>
 
             {imageGroup}
 
             <Group>
-              <b>{roadSignGroup?.name}</b>
-              <p>{roadSignGroup?.desc}</p>
+              <b>{roadMarkingGroup?.name}</b>
+              <p>{roadMarkingGroup?.desc}</p>
             </Group>
 
             <Arrow ref={setArrowElement} style={styles.arrow} />

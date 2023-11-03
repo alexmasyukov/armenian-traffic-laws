@@ -14,7 +14,8 @@ import { AppSettings } from '../../types.d';
 import './Application.scss';
 import { ReferenceProvider } from '../context/ReferenceContext';
 
-const RoadMarkings = React.lazy(() => import('../pages/RoadMarkings/RoadMarkings'));
+const RoadMarkingsPage = React.lazy(() => import('../pages/RoadMarkingsPage/RoadMarkingsPage'));
+const RoadSignsPage = React.lazy(() => import('../pages/RoadSignsPage/RoadSignsPage'));
 
 const Post1 = React.lazy(() => import('../content/post1.mdx'));
 const Post2 = React.lazy(() => import('../content/post2.mdx'));
@@ -52,13 +53,13 @@ enum Page {
 
 const components: MDXComponents = {
   h1: H1,
-  strong: (props) => <strong {...props} style={{ color: '#eee' }} />,
+  strong: (props) => <strong {...props} />, //style={{ color: '#eee' }}
   em: (props) => <em {...props} />,
 };
 
 const Application: React.FC = () => {
-  const [styledTheme, setStyledTheme] = React.useState(light);
-  const [darkTheme, setDarkTheme] = useState(true);
+  const [styledTheme, setStyledTheme] = useState(light);
+  const [darkTheme, setDarkTheme] = useState(false);
   const [activePage, setActivePage] = useState<Page>(Page.TrafficRules);
 
   /**
@@ -148,7 +149,7 @@ const Application: React.FC = () => {
               <button onClick={() => setActivePage(Page.TrafficRules)}>Правила дорожного движения</button>
             </div>
             <div className='col'>
-              <button>Дорожные знаки</button>
+              <button onClick={() => setActivePage(Page.RoadSigns)}>Дорожные знаки</button>
             </div>
             <div className='col'>
               <button onClick={() => setActivePage(Page.RoadMarkings)}>Дорожная разметка</button>
@@ -229,7 +230,13 @@ const Application: React.FC = () => {
 
         {activePage === Page.RoadMarkings && (
           <Suspense fallback={<LoadingPost />}>
-            <RoadMarkings />
+            <RoadMarkingsPage />
+          </Suspense>
+        )}
+
+        {activePage === Page.RoadSigns && (
+          <Suspense fallback={<LoadingPost />}>
+            <RoadSignsPage />
           </Suspense>
         )}
 

@@ -7,6 +7,7 @@
  * @package : Application Sass Stylesheet
 */
 
+@use 'fontsRoboto';
 @import './Theme.scss';
 
 /**
@@ -57,8 +58,12 @@ h1 {
   margin: 0;
 }
 
+b {
+  font-weight: 500;
+}
+
 #app {
-  color: #bdc1c6;
+  // color: #bdc1c6;
   margin-left: 20px;
   margin-top: 20px;
   // display: flex;

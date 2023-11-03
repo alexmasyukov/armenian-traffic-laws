@@ -1,11 +1,11 @@
 import { roadMarkings, roadMarkingsGroups } from '../../data/roadMarkings';
 import React from 'react';
 
-export default function RoadMarkings() {
-  const getRoadMarkings = (id: string) => {
-    return roadMarkings.filter((item) => item.groupId === id);
-  };
+const getRoadMarkingsByGroup = (id: string) => {
+  return roadMarkings.filter((item) => item.groupId === id);
+};
 
+export default function RoadMarkingsPage() {
   return (
     <div className='container'>
       {roadMarkingsGroups.map(({ id, info, name, desc }) => (
@@ -16,7 +16,7 @@ export default function RoadMarkings() {
             <p>{desc}</p>
           </div>
 
-          {getRoadMarkings(id)?.map(({ num, name, desc }) => (
+          {getRoadMarkingsByGroup(id)?.map(({ num, name, desc }) => (
             <React.Fragment key={num}>
               <div className='col-4 col-md-4 col-lg-3'>
                 <img
@@ -31,7 +31,12 @@ export default function RoadMarkings() {
               <div className='col-8 col-md-8 col-lg-9'>
                 <b>
                   {num}
-                  {name && <> – {name}</>}
+                  {name && (
+                    <>
+                      {' '}–{' '}
+                      {name}
+                    </>
+                  )}
                 </b>
                 <p>{desc}</p>
               </div>
